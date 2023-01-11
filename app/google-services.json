@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "822627083821",
+    "firebase_url": "https://fffwallpapers-default-rtdb.firebaseio.com",
+    "project_id": "fffwallpapers",
+    "storage_bucket": "fffwallpapers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822627083821:android:96990b87763769b961baa4",
+        "android_client_info": {
+          "package_name": "com.firex.ff_fire_wallpapers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822627083821-avsrerjar6jqn2f7civ5i8n4mdl6117t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH3lHMOsKwQwT6frjoX1hTXFZHqnnK5VI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822627083821-avsrerjar6jqn2f7civ5i8n4mdl6117t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
