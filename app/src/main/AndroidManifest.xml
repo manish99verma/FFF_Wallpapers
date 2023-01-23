@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.firex.ff_fire_wallpapers">
+    package="com.firex.ff_free_fire_wallpapers">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
@@ -24,21 +24,21 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.BGMIsWallpapers">
         <activity
-            android:name="com.firex.ff_fire_wallpapers.FinalWallpaperActivity"
+            android:name="com.firex.ff_free_fire_wallpapers.FinalWallpaperActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.FinalWallpaper" />
         <activity
-            android:name="com.firex.ff_fire_wallpapers.CatX"
+            android:name="com.firex.ff_free_fire_wallpapers.CatX"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name="com.firex.ff_fire_wallpapers.Wel_Activity"
+            android:name="com.firex.ff_free_fire_wallpapers.Wel_Activity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/mainTheme" />
         <activity
-            android:name="com.firex.ff_fire_wallpapers.Splash_Activity"
+            android:name="com.firex.ff_free_fire_wallpapers.Splash_Activity"
             android:exported="true"
             android:noHistory="true"
             android:screenOrientation="portrait"
@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.firex.ff_fire_wallpapers.Main_Activity"
+            android:name="com.firex.ff_free_fire_wallpapers.Main_Activity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -58,7 +58,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat" />
         <service
-            android:name="com.firex.ff_fire_wallpapers.Utilities.FirebaseMessagingService"
+            android:name="com.firex.ff_free_fire_wallpapers.Utilities.FirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

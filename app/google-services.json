@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:822627083821:android:96990b87763769b961baa4",
+        "mobilesdk_app_id": "1:822627083821:android:3b15fb93418f5eed61baa4",
         "android_client_info": {
-          "package_name": "com.firex.ff_fire_wallpapers"
+          "package_name": "com.firex.ff_free_fire_wallpapers"
         }
       },
       "oauth_client": [
