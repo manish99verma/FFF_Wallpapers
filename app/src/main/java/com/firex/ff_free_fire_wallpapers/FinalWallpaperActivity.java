@@ -44,7 +44,6 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 import com.firex.ff_free_fire_wallpapers.Adapters.FullSizeImageAdapter;
 import com.firex.ff_free_fire_wallpapers.Dialogs.MyProgressDialog;
-import com.firex.ff_free_fire_wallpapers.Dialogs.RateDialog;
 import com.firex.ff_free_fire_wallpapers.Utilities.AdsController;
 import com.firex.ff_free_fire_wallpapers.Utilities.Configuration;
 import com.firex.ff_free_fire_wallpapers.Utilities.DataTransfer;
@@ -841,7 +840,6 @@ public class FinalWallpaperActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     dialogClass.cancel();
                     Toast.makeText(context, "Wallpaper applied!", Toast.LENGTH_SHORT).show();
-                    ratingManager();
                 });
 
             }
@@ -884,20 +882,6 @@ public class FinalWallpaperActivity extends AppCompatActivity {
         });
 
         setAsDialog.show();
-    }
-
-    private void ratingManager() {
-        if (isFromDownloads)
-            return;
-        int noOfWallpapersApplied = pref.getInt("noOfWallpapersApplied", 0);
-        pref.edit().putInt("noOfWallpapersApplied", ++noOfWallpapersApplied).apply();
-
-        if (noOfWallpapersApplied % 2 == 0) {
-            RateDialog dialog = new RateDialog(context);
-            dialog.shouldOpenInAppReview();
-            dialog.showIfNotRated();
-        }
-
     }
 
     static ArrayList<String> convertToFirebaseStyle(ArrayList<String> urls) {

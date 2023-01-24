@@ -2,6 +2,7 @@ package com.firex.ff_free_fire_wallpapers.Fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,13 +24,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.firex.ff_free_fire_wallpapers.Adapters.CatAdapter;
 import com.firex.ff_free_fire_wallpapers.Adapters.CatAdapter2;
 import com.firex.ff_free_fire_wallpapers.Adapters.PopAdapter;
-import com.firex.ff_free_fire_wallpapers.Dialogs.RateDialog;
+import com.firex.ff_free_fire_wallpapers.BuildConfig;
+import com.firex.ff_free_fire_wallpapers.Dialogs.CustomReviewManager;
 import com.firex.ff_free_fire_wallpapers.Models.CatModel;
 import com.firex.ff_free_fire_wallpapers.Models.WallpaperModel;
 import com.firex.ff_free_fire_wallpapers.R;
+import com.firex.ff_free_fire_wallpapers.Utilities.PrefManager;
 import com.firex.ff_free_fire_wallpapers.Utilities.Utils;
 import com.firex.ff_free_fire_wallpapers.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.play.core.review.ReviewManager;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -101,6 +105,8 @@ public class MainFragment extends Fragment {
         getCategoriesData();
         binding.RVCategories.setNestedScrollingEnabled(false);
         binding.RVMore.setNestedScrollingEnabled(false);
+
+        new CustomReviewManager(context).showIfNotRated();
 
         return binding.getRoot();
     }
@@ -283,8 +289,13 @@ public class MainFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.rate_us_menu) {
-            RateDialog dialog = new RateDialog(context);
-            dialog.show();
+            PrefManager pref = PrefManager.getInstance(context);
+            pref.putBoolean("isAlreadyRated", true);
+
+            CustomReviewManager customReviewManager = new CustomReviewManager(context);
+            customReviewManager.playStore(context);
+        } else if (item.getItemId() == R.id.share_app_menu) {
+            shareApp(context);
         }
 
         return super.onOptionsItemSelected(item);
@@ -493,7 +504,7 @@ public class MainFragment extends Fragment {
     private void updateDatabaseSession() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        Log.i(TAG, "onSuccess: updateSession: "+databaseUpdateSession);
+        Log.i(TAG, "onSuccess: updateSession: " + databaseUpdateSession);
         try {
             db.collection("Utils").document("l3tLT8Ql2PdSDJBiFPpo").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
@@ -808,4 +819,21 @@ public class MainFragment extends Fragment {
         });
 
     }
+
+    public static void shareApp(Context context) {
+        try {
+            String msg = "Take a look at this Awesome Free Fire Wallpaper App ";
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Free Fire Wallpapers");
+            String shareMessage = "\n" + msg + "\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            context.startActivity(Intent.createChooser(shareIntent, "choose one"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
